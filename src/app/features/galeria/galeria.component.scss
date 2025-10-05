@@ -1,0 +1,270 @@
+.galeria {
+  min-height: 100vh;
+  padding: 4rem 2rem;
+  text-align: center;
+  position: relative;
+  animation: fadeInUp 0.6s ease-out;
+
+  // Decoración de fondo con gatos flotantes
+  &::before {
+    content: '😺';
+    position: fixed;
+    top: 10%;
+    left: 5%;
+    font-size: 100px;
+    opacity: 0.05;
+    pointer-events: none;
+    animation: float 6s ease-in-out infinite;
+  }
+
+  &::after {
+    content: '😸';
+    position: fixed;
+    bottom: 10%;
+    right: 5%;
+    font-size: 120px;
+    opacity: 0.05;
+    pointer-events: none;
+    animation: float 7s ease-in-out infinite;
+    animation-delay: 1s;
+  }
+
+  h2 {
+    font-family: 'Pacifico', cursive;
+    color: #1e56b6;
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
+    position: relative;
+    display: inline-block;
+    text-shadow: 3px 3px 6px rgba(255, 107, 157, 0.2);
+    animation: slideDown 0.8s ease-out;
+
+    // Decoración de gatos a los lados del título
+    &::before {
+      content: '🐱';
+      position: absolute;
+      left: -70px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 2.5rem;
+      animation: wiggle 3s ease-in-out infinite;
+    }
+
+    &::after {
+      content: '🐱';
+      position: absolute;
+      right: -70px;
+      top: 50%;
+      transform: translateY(-50%) scaleX(-1);
+      font-size: 2.5rem;
+      animation: wiggle 3s ease-in-out infinite;
+      animation-delay: 1.5s;
+    }
+  }
+
+  p {
+    color: #b63b0b;
+    font-size: 1.4rem;
+    font-weight: 500;
+    margin-bottom: 3rem;
+    font-family: 'Fredoka', sans-serif;
+    animation: slideDown 0.8s ease-out;
+    animation-delay: 0.2s;
+    animation-fill-mode: backwards;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    justify-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 0;
+  }
+
+  .foto {
+    border-radius: 20px;
+    overflow: hidden;
+    background: white;
+    box-shadow: 0 8px 25px rgba(255, 107, 157, 0.15);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    cursor: pointer;
+    animation: fadeInUp 0.6s ease-out;
+    animation-fill-mode: backwards;
+
+    // Animación escalonada para cada foto
+    &:nth-child(1) { animation-delay: 0.1s; }
+    &:nth-child(2) { animation-delay: 0.2s; }
+    &:nth-child(3) { animation-delay: 0.3s; }
+    &:nth-child(4) { animation-delay: 0.4s; }
+    &:nth-child(5) { animation-delay: 0.5s; }
+    &:nth-child(6) { animation-delay: 0.6s; }
+
+    // Decoración de huella que aparece al hacer hover
+    &::before {
+      content: '🐾';
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      font-size: 35px;
+      opacity: 0;
+      transform: scale(0) rotate(-20deg);
+      transition: all 0.4s ease;
+      z-index: 10;
+      filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.3));
+    }
+
+    // Overlay gradient que aparece al hacer hover
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, 
+        rgba(255, 107, 157, 0.3), 
+        rgba(255, 160, 122, 0.3));
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      pointer-events: none;
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s ease;
+      aspect-ratio: 1 / 1;
+    }
+
+    // Efectos al hacer hover
+    &:hover {
+      transform: translateY(-15px) rotate(2deg);
+      box-shadow: 0 15px 40px rgba(255, 107, 157, 0.35);
+
+      &::before {
+        opacity: 1;
+        transform: scale(1) rotate(0deg);
+        animation: wiggle 1s ease-in-out infinite;
+      }
+
+      &::after {
+        opacity: 1;
+      }
+
+      img {
+        transform: scale(1.15);
+      }
+    }
+
+    // Efecto al hacer click (opcional)
+    &:active {
+      transform: translateY(-10px) rotate(1deg) scale(0.98);
+    }
+  }
+}
+
+// Animaciones personalizadas
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  25% {
+    transform: translateY(-20px) rotate(5deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(-3deg);
+  }
+  75% {
+    transform: translateY(-25px) rotate(3deg);
+  }
+}
+
+@keyframes wiggle {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(-8deg);
+  }
+  75% {
+    transform: rotate(8deg);
+  }
+}
+
+// Responsive
+@media (max-width: 768px) {
+  .galeria {
+    padding: 3rem 1.5rem;
+
+    h2 {
+      font-size: 2.2rem;
+      
+      // Ocultar decoraciones en móvil para mejor visualización
+      &::before,
+      &::after {
+        display: none;
+      }
+    }
+
+    p {
+      font-size: 1.1rem;
+      margin-bottom: 2rem;
+    }
+
+    .grid {
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 1rem;
+      padding: 1rem 0;
+    }
+
+    .foto {
+      border-radius: 15px;
+
+      &:hover {
+        transform: translateY(-8px) rotate(1deg);
+      }
+
+      &::before {
+        font-size: 28px;
+        top: 10px;
+        right: 10px;
+      }
+    }
+  }
+}
+
+// Para tablets
+@media (min-width: 769px) and (max-width: 1024px) {
+  .galeria {
+    .grid {
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    }
+  }
+}

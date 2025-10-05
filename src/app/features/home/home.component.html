@@ -1,0 +1,68 @@
+<main class="home">
+  <app-birthday-animation *ngIf="showAnimation"></app-birthday-animation>
+
+  <section class="hero">
+    <!-- Foto del cumpleañero con decoraciones -->
+    <img src="assets/galeria/foto3.png" alt="Foto del cumpleañero" class="foto" />
+    
+    
+    <!-- Título principal -->
+    <h1>¡Feliz Cumple, Giancarlos! 🎉</h1>
+    
+    <!-- Texto descriptivo -->
+    <p class="hero__text">
+      Este es mi pequeño regalo digital mano, con cariño jeje
+    </p>
+    
+    <!-- Divisor decorativo con huellas -->
+    <div style="text-align: center; margin: 2rem 0; font-size: 28px; opacity: 0.4;">
+      🐾 🐾 🐾
+    </div>
+    
+    <!-- Botones de acción -->
+    <div class="hero__buttons">
+      <button routerLink="/mensaje">
+        📝 Ver mensaje
+      </button>
+      <button class="outline" routerLink="/galeria">
+        📸 Ver galería
+      </button>
+    </div>
+
+    <!-- Mensaje adicional decorativo (opcional) -->
+    <div style="
+      margin-top: 3rem; 
+      font-size: 1rem; 
+      color: #999;
+      font-style: italic;
+    ">
+      Tematica de gatos  😺
+    </div>
+  </section>
+
+  <!-- Gatos adicionales flotantes (opcional) -->
+  <div style="
+    position: fixed;
+    top: 20%;
+    right: 5%;
+    font-size: 60px;
+    opacity: 0.1;
+    pointer-events: none;
+    animation: float 8s ease-in-out infinite;
+  ">
+    😻
+  </div>
+  
+  <div style="
+    position: fixed;
+    bottom: 25%;
+    left: 8%;
+    font-size: 70px;
+    opacity: 0.1;
+    pointer-events: none;
+    animation: float 7s ease-in-out infinite;
+    animation-delay: 2s;
+  ">
+    🐱
+  </div>
+</main>

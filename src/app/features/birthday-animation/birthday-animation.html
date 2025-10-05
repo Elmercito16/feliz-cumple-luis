@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¡Feliz Cumpleaños Giancarlos!</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .celebration-container {
+            position: relative;
+            text-align: center;
+            z-index: 10;
+        }
+
+        .birthday-message {
+            font-size: 4rem;
+            font-weight: bold;
+            color: #FFD700;
+            text-shadow: 
+                0 0 10px rgba(255, 215, 0, 0.8),
+                0 0 20px rgba(255, 215, 0, 0.6),
+                0 0 30px rgba(255, 215, 0, 0.4),
+                3px 3px 6px rgba(0, 0, 0, 0.5);
+            animation: messageAppear 1s ease-out, pulse 2s ease-in-out 1s infinite;
+            transform-origin: center;
+        }
+
+        .name {
+            display: block;
+            font-size: 5rem;
+            margin-top: 1rem;
+            background: linear-gradient(45deg, #FFD700, #FFA500, #FF6347);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: messageAppear 1s ease-out 0.3s both, rainbow 2s linear infinite;
+        }
+
+        /* Animación del mensaje */
+        @keyframes messageAppear {
+            0% {
+                opacity: 0;
+                transform: scale(0.5) translateY(-100px);
+            }
+            60% {
+                transform: scale(1.1) translateY(0);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        @keyframes rainbow {
+            0%, 100% {
+                filter: hue-rotate(0deg);
+            }
+            50% {
+                filter: hue-rotate(60deg);
+            }
+        }
+
+        /* Contenedor de confeti */
+        .confetti-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        /* Confeti individual */
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            top: -10%;
+            animation: confettiFall 3s linear forwards;
+        }
+
+        @keyframes confettiFall {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(120vh) rotate(720deg);
+                opacity: 0.3;
+            }
+        }
+
+        /* Globos */
+        .balloon {
+            position: absolute;
+            width: 50px;
+            height: 60px;
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            animation: balloonFloat 3s ease-out forwards;
+        }
+
+        @keyframes balloonFloat {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-150vh) rotate(20deg);
+                opacity: 0;
+            }
+        }
+
+        /* Emojis de celebración */
+        .emoji {
+            position: absolute;
+            font-size: 30px;
+            animation: emojiFall 3s ease-out forwards;
+        }
+
+        @keyframes emojiFall {
+            0% {
+                transform: translateY(0) rotate(0deg) scale(0);
+                opacity: 1;
+            }
+            50% {
+                transform: translateY(50vh) rotate(180deg) scale(1);
+            }
+            100% {
+                transform: translateY(120vh) rotate(360deg) scale(0.5);
+                opacity: 0;
+            }
+        }
+
+        /* Estrellas brillantes */
+        .star {
+            position: absolute;
+            font-size: 25px;
+            animation: starTwinkle 3s ease-in-out forwards;
+        }
+
+        @keyframes starTwinkle {
+            0%, 100% {
+                opacity: 0;
+                transform: scale(0) rotate(0deg);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.5) rotate(180deg);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .birthday-message {
+                font-size: 2.5rem;
+            }
+            .name {
+                font-size: 3rem;
+            }
+            .emoji {
+                font-size: 25px;
+            }
+            .balloon {
+                width: 40px;
+                height: 50px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Mensaje principal -->
+    <div class="celebration-container">
+        <div class="birthday-message">
+            ¡Feliz Cumpleaños
+            <span class="name">Giancarlos!</span>
+        </div>
+    </div>
+
+    <!-- Contenedor de efectos -->
+    <div class="confetti-container" id="confettiContainer"></div>
+
+    <script>
+        const container = document.getElementById('confettiContainer');
+        
+        // Colores para el confeti
+        const colors = ['#FFD700', '#FF6347', '#4169E1', '#32CD32', '#FF1493', '#FFA500', '#9370DB', '#00CED1'];
+        
+        // Emojis de celebración
+        const emojis = ['🎉', '🎊', '🎂', '🎈', '🎁', '✨', '⭐', '💫', '🎆', '🎇'];
+
+        // Generar confeti
+        function createConfetti() {
+            for (let i = 0; i < 100; i++) {
+                setTimeout(() => {
+                    const confetti = document.createElement('div');
+                    confetti.className = 'confetti';
+                    confetti.style.left = Math.random() * 100 + '%';
+                    confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                    confetti.style.animationDelay = Math.random() * 0.5 + 's';
+                    confetti.style.animationDuration = (Math.random() * 1 + 2) + 's';
+                    confetti.style.width = (Math.random() * 8 + 5) + 'px';
+                    confetti.style.height = (Math.random() * 8 + 5) + 'px';
+                    container.appendChild(confetti);
+
+                    // Eliminar después de la animación
+                    setTimeout(() => confetti.remove(), 3000);
+                }, i * 20);
+            }
+        }
+
+        // Generar globos
+        function createBalloons() {
+            for (let i = 0; i < 15; i++) {
+                setTimeout(() => {
+                    const balloon = document.createElement('div');
+                    balloon.className = 'balloon';
+                    balloon.style.left = Math.random() * 100 + '%';
+                    balloon.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                    balloon.style.animationDelay = Math.random() * 0.3 + 's';
+                    balloon.style.animationDuration = (Math.random() * 1 + 2.5) + 's';
+                    container.appendChild(balloon);
+
+                    setTimeout(() => balloon.remove(), 3000);
+                }, i * 150);
+            }
+        }
+
+        // Generar emojis
+        function createEmojis() {
+            for (let i = 0; i < 30; i++) {
+                setTimeout(() => {
+                    const emoji = document.createElement('div');
+                    emoji.className = 'emoji';
+                    emoji.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+                    emoji.style.left = Math.random() * 100 + '%';
+                    emoji.style.animationDelay = Math.random() * 0.5 + 's';
+                    emoji.style.animationDuration = (Math.random() * 1 + 2) + 's';
+                    container.appendChild(emoji);
+
+                    setTimeout(() => emoji.remove(), 3000);
+                }, i * 80);
+            }
+        }
+
+        // Generar estrellas
+        function createStars() {
+            for (let i = 0; i < 20; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.textContent = '⭐';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.animationDelay = Math.random() * 2 + 's';
+                container.appendChild(star);
+
+                setTimeout(() => star.remove(), 3000);
+            }
+        }
+
+        // Iniciar animaciones
+        setTimeout(() => {
+            createConfetti();
+            createBalloons();
+            createEmojis();
+            createStars();
+        }, 500);
+    </script>
+</body>
+</html>

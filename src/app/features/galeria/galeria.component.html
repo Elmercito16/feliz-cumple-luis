@@ -1,0 +1,51 @@
+<main class="galeria">
+  <h2>📸 Galería de Recuerdos</h2>
+  <p>Algunos momentos especiales del cumpleañero y que pasamos juntos tambien💖</p>
+  
+  <!-- Divisor decorativo con huellas -->
+  <div style="text-align: center; margin: 2rem 0; font-size: 24px; opacity: 0.3;">
+    🐾 🐾 🐾
+  </div>
+  
+  <div class="grid">
+    <div class="foto" *ngFor="let foto of fotos">
+      <img [src]="foto.src" [alt]="foto.alt" />
+    </div>
+  </div>
+
+  <!-- Mensaje cuando no hay fotos (opcional) -->
+  <div *ngIf="fotos.length === 0" style="padding: 4rem 2rem; text-align: center;">
+    <div style="font-size: 80px; margin-bottom: 1rem;">📷</div>
+    <p style="font-size: 1.3rem; color: #666;">
+      Próximamente habrá más recuerdos aquí...
+    </p>
+  </div>
+
+  <!-- Botón para volver al inicio (opcional) -->
+  <div style="margin-top: 4rem; text-align: center;">
+    <button 
+      class="btn-volver"
+      routerLink="/"
+      style="
+        background: linear-gradient(135deg, #FF6B9D, #FFA07A);
+        color: white;
+        border: none;
+        padding: 15px 40px;
+        border-radius: 50px;
+        font-family: 'Fredoka', sans-serif;
+        font-weight: 600;
+        font-size: 1.1rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 20px rgba(255, 107, 157, 0.3);
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+      "
+      onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 30px rgba(255, 107, 157, 0.4)';"
+      onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 20px rgba(255, 107, 157, 0.3)';"
+    >
+      🏠 Volver al Inicio
+    </button>
+  </div>
+</main>

@@ -1,17 +1,24 @@
 <main class="home">
   <app-birthday-animation *ngIf="showAnimation"></app-birthday-animation>
 
+  <!-- Audio HTML5 (oculto) -->
+<audio #audioPlayer [src]="'assets/galeria/audio/happy-birthday.mp3'" [loop]="true"></audio>
+
+<!-- Control de música -->
+<button class="music-control" (click)="toggleMusic()" *ngIf="!showAnimation">
+  {{ isPlaying ? '🔊 Pausar' : '🎵 Reproducir música' }}
+</button>
+
   <section class="hero">
-    <!-- Foto del cumpleañero con decoraciones -->
+    <!-- Foto del cumpleañero -->
     <img src="assets/galeria/foto3.png" alt="Foto del cumpleañero" class="foto" />
     
-    
     <!-- Título principal -->
-    <h1>¡Feliz Cumple, Luis Maldonado! 🎉</h1>
+    <h1>¡Feliz Cumple, Giancarlos! 🎉</h1>
     
     <!-- Texto descriptivo -->
     <p class="hero__text">
-      Este es mi pequeño regalo digital mano, gey si no te gusta, con cariño jeje
+      Este es mi pequeño regalo digital mano, con cariño jeje
     </p>
     
     <!-- Divisor decorativo con huellas -->
@@ -29,18 +36,18 @@
       </button>
     </div>
 
-    <!-- Mensaje adicional decorativo (opcional) -->
+    <!-- Mensaje adicional decorativo -->
     <div style="
       margin-top: 3rem; 
       font-size: 1rem; 
       color: #999;
       font-style: italic;
     ">
-      Tematica de gatos  😺
+      Temática de gatos 😺
     </div>
   </section>
 
-  <!-- Gatos adicionales flotantes (opcional) -->
+  <!-- Gatos flotantes decorativos -->
   <div style="
     position: fixed;
     top: 20%;

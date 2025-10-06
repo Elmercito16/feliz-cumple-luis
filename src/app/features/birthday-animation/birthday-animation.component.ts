@@ -10,7 +10,7 @@ import { CommonModule, isPlatformBrowser } from '@angular/common';
       <div class="celebration-container">
         <div class="birthday-message">
           ¡Feliz Cumpleaños
-          <span class="name">Giancarlos!</span>
+          <span class="name">Luis Maldonado!</span>
         </div>
       </div>
       <div class="confetti-container" #confettiContainer></div>
